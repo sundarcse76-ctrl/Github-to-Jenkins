@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        maven 'maven-3.9'   // same name as in Global Tool Configuration
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -11,19 +16,10 @@ pipeline {
                 echo 'Hello from Jenkins'
             }
         }
+        stage('Verify Maven') {
+            steps {
+                sh 'mvn -version'
+            }
+        }
     }
 }
-node {
-    stage('Checkout') {
-        checkout scm
-    }
-
-    stage('Hello') {
-        echo 'Hello from Jenkins'
-    }
-
-    stage('Verify Maven') {
-        sh 'mvn -version'
-    }
-}
-
