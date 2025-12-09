@@ -13,3 +13,8 @@ pipeline {
         }
     }
 }
+stage('Verify Maven') {
+    steps {
+        sh 'mvn -version'
+    }
+}
