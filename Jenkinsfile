@@ -13,8 +13,17 @@ pipeline {
         }
     }
 }
-stage('Verify Maven') {
-    steps {
+node {
+    stage('Checkout') {
+        checkout scm
+    }
+
+    stage('Hello') {
+        echo 'Hello from Jenkins'
+    }
+
+    stage('Verify Maven') {
         sh 'mvn -version'
     }
 }
+
