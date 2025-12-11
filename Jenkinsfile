@@ -13,7 +13,14 @@ pipeline {
         }
         stage('Maven Build & Test') {
             steps {
-                sh 'echo "No Maven project yet; skipping mvn build"'
+                sh 'mvn -B clean test'
+            }
+        }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('sonarqube-local') {
+                    sh 'mvn -B clean verify sonar:sonar'
+                }
             }
         }
     }
