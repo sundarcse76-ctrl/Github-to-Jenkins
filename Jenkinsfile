@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        maven 'maven-3.9'
+        maven 'maven3.9'
     }
 
     stages {
@@ -21,7 +21,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube-local') {
-                    sh 'mvn -B clean verify sonar:sonar'
+                    sh 'mvn -B sonar:sonar'
                 }
             }
         }
